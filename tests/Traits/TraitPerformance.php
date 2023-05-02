@@ -4,7 +4,10 @@ namespace Tests\Traits;
 
 trait TraitPerformance
 {
-    public function assertExecutionTime($max_time, callable $callback)
+    /**
+     * 檢查 callback 的執行時間是否小於指定時間
+     */
+    public function assertExecutionTime(int|float $max_time, callable $callback)
     {
         $start_time = microtime(true);
         $callback();
