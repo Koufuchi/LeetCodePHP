@@ -13,12 +13,12 @@ class ContainsDuplicate
      */
     function solution(array $nums): bool
     {
-        $visistedArr = [];
+        $visitedArr = [];
         foreach ($nums as $value) {
-            if (isset($visistedArr[$value])) {
+            if (isset($visitedArr[$value])) {
                 return true;
             }
-            $visistedArr[$value] = 1;
+            $visitedArr[$value] = 1;
         }
 
         return false;
