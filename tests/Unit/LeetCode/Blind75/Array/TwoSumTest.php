@@ -39,7 +39,7 @@ class TwoSumTest extends TestCase
                 $questionArr['nums'],
                 $questionArr['target']
             );
-            $this->assertArraysAreSimilar($result, $questionArr['correct']);
+            $this->assertArraysHaveSameValue($result, $questionArr['correct']);
             $this->assertExecutionTime(0.352, function () use ($TwoSum, $questionArr) {
                 $TwoSum->solution(
                     $questionArr['nums'],
