@@ -4,7 +4,7 @@ namespace App\LeetCode\Blind75\Array;
 
 class GroupAnagrams
 {
-    // https://leetcode.com/problems/valid-anagram/
+    // https://leetcode.com/problems/group-anagrams/
 
     /**
      *  解法：
