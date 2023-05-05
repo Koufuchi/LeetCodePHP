@@ -24,12 +24,25 @@ trait TraitArraysAreSimilar
     function assertArraysHaveSameValue(array $a, array $b): void
     {
         // # 檢查數量
-        // $this->assertEquals(count($a), count($b));
+        $this->assertEquals(count($a), count($b));
 
         // # 檢查鍵值
-        // foreach ($a as $key => $value) {
-        //     $this->assertEquals($b[$key], $value);
-        // }
+        $aValueCountArr = [];
+        foreach ($a as $aValue) {
+            $aValueCountArr[$aValue]++;
+        }
+        foreach($b as $bValue){
+            $this->assertTrue(isset($aValueCountArr[$bValue]));
+            $aValueCountArr[$bValue]--;
+        }
+        $isSame = true;
+        foreach($aValueCountArr as $cnt){
+            if($cnt !== 0){
+                $isSame = false;
+                break;
+            }
+        }
+        $this->assertTrue($isSame);
     }
 
     // function assertArraysAreSimilarDeep(array $a, array $b): bool
