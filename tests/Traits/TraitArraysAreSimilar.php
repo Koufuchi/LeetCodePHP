@@ -48,12 +48,29 @@ trait TraitArraysAreSimilar
         $this->assertTrue($isSame);
     }
 
-    // function assertArraysAreSimilarDeep(array $a, array $b): bool
-    // {
-    //     foreach ($a as $valueOne) {
-    //         // if($valueOne)
-    //     }
+    /**
+     * 檢查兩個多維陣列是否相似(結構一樣，全部值一樣，但鍵可以不一樣)
+     * TODO: 待優化，讓他不需要跑完全部排序就能先判斷部分不合理的狀況
+     */
+    function assertArraysHaveSameValueDeep(array $a, array $b): void
+    {
+        $this->sortArrayDeep($a);
+        $this->sortArrayDeep($b);
+        $this->assertEquals($a, $b);
+    }
 
-    //     return true;
-    // }
+    /**
+     * 對單個陣列排序，如是多維則會遞迴排序
+     */
+    function sortArrayDeep(array &$arr): void
+    {
+        sort($arr);
+        foreach ($arr as $key => $value) {
+            # 包陣列就繼續往下遞迴
+            if (is_array($value)) {
+                sort($value);
+                $this->sortArrayDeep($arr[$key]);
+            }
+        }
+    }
 }

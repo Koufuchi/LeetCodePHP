@@ -8,7 +8,6 @@ use Tests\Traits\TraitPerformance;
 use Tests\Traits\TraitArraysAreSimilar;
 
 
-// TODO: 需拓展自動測試以便能比較二維陣列不管順序只比較值
 class GroupAnagramsTest extends TestCase
 {
     use TraitPerformance, TraitArraysAreSimilar;
@@ -30,10 +29,11 @@ class GroupAnagramsTest extends TestCase
             'strs' => ["bdddddddddd", "bbbbbbbbbbc"],
             'correct' => [["bbbbbbbbbbc"], ["bdddddddddd"]]
         ],
-        4 => [ // XXX 跑測試應該要跳錯誤
-            'strs' => ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'],
-            'correct' => [['bat'], ['natt', 'tan'], ['ate', 'eat', 'tea']]
-        ],
+        // 測試用，這邊開放時單元測試應報錯。
+        // 4 => [
+        //     'strs' => ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'],
+        //     'correct' => [['bat'], ['natt', 'tan'], ['ate', 'eat', 'tea']]
+        // ],
     ];
 
     public function testSolution()
@@ -44,13 +44,8 @@ class GroupAnagramsTest extends TestCase
             $result = $GroupAnagrams->solution(
                 $questionArr['strs']
             );
-            $this->assertArraysHaveSameKeyValuePair($result, $questionArr['correct']);
-            // $this->assertEquals(
-            //     $questionArr['correct'],
-            //     $GroupAnagrams->solution(
-            //         $questionArr['strs']
-            //     )
-            // );
+            $this->assertArraysHaveSameValueDeep($result, $questionArr['correct']);
+
             $this->assertExecutionTime(0.352, function () use ($GroupAnagrams, $questionArr) {
                 $GroupAnagrams->solution(
                     $questionArr['strs']
