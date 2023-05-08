@@ -28,6 +28,17 @@ class TwoSumTest extends TestCase
             'target' => 6,
             'correct' => [1, 0]
         ],
+        3 => [
+            'nums' => [3, 3],
+            'target' => 6,
+            'correct' => [0, 1]
+        ],
+        # 測試用，這邊開放時單元測試應報錯。
+        // 4 => [ 
+        //     'nums' => [3, 3],
+        //     'target' => 6,
+        //     'correct' => [1, 1]
+        // ],
     ];
 
     public function testSolution()
