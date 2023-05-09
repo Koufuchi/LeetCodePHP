@@ -19,7 +19,7 @@ class ProductOfArrayExceptSelf
      */
 
     /**
-     *  效能極致版
+     *  效能極致版（有考慮過同一次遍歷就計算左右指標，但這樣你回傳陣列的順序就會錯，而若要先定義陣列初始值等於沒有省到時間複雜度）
      */
     function solution(array $nums): array
     {
